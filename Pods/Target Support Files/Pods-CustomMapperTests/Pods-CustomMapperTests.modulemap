@@ -1,0 +1,6 @@
+framework module Pods_CustomMapperTests {
+  umbrella header "Pods-CustomMapperTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

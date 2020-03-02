@@ -79,7 +79,8 @@ struct ResponseMix: CustomMappable {
         address <<- (data, "address")
     }
 }
-
+```
+```swift
 let model: ResponseMix? = dict.convert()
 
 var model: ResponseMix?

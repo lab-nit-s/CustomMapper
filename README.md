@@ -43,3 +43,45 @@ let age: Int? = dict.convert(key: "person.age")
 var age: Int?
 age <<- (dict, "person.age")
 ```
+
+### 5 Combine Codable and ObjectMapper together using Composition and `CustomMappable`
+Suppose we have a Codable Person Struct & and the Address struct is Conforming to ObjectMapper.
+Then we can combine them both using this framework's `CustomMappable` protocol as:
+```swift
+struct PersonCodable: Codable {
+    var name: String
+    var age: Int
+}
+
+struct AddressObjMap: Mappable {
+
+    init?(map: Map) {
+        //
+    }
+    
+    mutating func mapping(map: Map) {
+        line1 <- map["line1"]
+        pincode <- map["pincode"]
+    }
+    
+    var line1: String!
+    var pincode: Int!
+}
+```
+```swift
+struct ResponseMix: CustomMappable {
+    
+    var person: PersonCodable!
+    var address: AddressObjMap!
+    
+    init(data: DataItem?) {
+        person <<- (data, "person")
+        address <<- (data, "address")
+    }
+}
+
+let model: ResponseMix? = dict.convert()
+
+var model: ResponseMix?
+model <<- dict
+```

@@ -16,17 +16,17 @@ let dict: [String: Any] = [
     ]
 ```
 
-# 1 Convert it directly to an Object
+### 1 Convert it directly to an Object
 ```swift
 let model: Response? = dict.convert()
 ```
 
-# 2 Extract value from dict to an object
+### 2 Extract value from dict to an object
 ```swift
 let address: Address? = dict.convert(key: "address")
 ```
 
-# 3 Use custom Operators to do the same as above
+### 3 Use custom Operators to do the same as above
 ```swift
 var model: Response?
 model <<- dict
@@ -36,13 +36,10 @@ var address: Address?
 address <<- (dict, "address")
 ```
 
-# 4 Extract value for keypath
+### 4 Extract value for keypath
 ```swift
 let age: Int? = dict.convert(key: "person.age")
 
 var age: Int?
 age <<- (dict, "person.age")
 ```
-
-
-
